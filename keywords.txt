@@ -1,0 +1,54 @@
+#######################################
+# Syntax Coloring Map For ArduinoLifx
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+ArduinoLifx	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+begin	KEYWORD2
+setFlags	KEYWORD2
+setSequenceNumber	KEYWORD2
+setSource	KEYWORD2
+setTarget	KEYWORD2
+setDestination	KEYWORD2
+getState	KEYWORD2
+setColor  KEYWORD2
+setWaveform KEYWORD2
+getPower	KEYWORD2
+setPower	KEYWORD2
+getInfrared	KEYWORD2
+setInfrared	KEYWORD2
+sendPacket	KEYWORD2
+flushPacket	KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+
+LIFX_PROTOCOL_NUMBER 	LITERAL1
+LIFX_GETSTATE	LITERAL1
+LIFX_SETCOLOR	LITERAL1
+LIFX_SETWAVEFORM	LITERAL1
+LIFX_SETWAVEFORM_OPTIONAL	LITERAL1
+LIFX_GETPOWER	LITERAL1
+LIFX_SETPOWER	LITERAL1
+LIFX_GETINFRARED	LITERAL1
+LIFX_SETINFRARED	LITERAL1
+LIFX_GETSTATE	LITERAL1
+LIFX_SETCOLOR	LITERAL1
+LIFX_SETWAVEFORM	LITERAL1
+LIFX_SETWAVEFORM_OPTIONAL	LITERAL1
+LIFX_GETPOWER	LITERAL1
+LIFX_SETPOWER	LITERAL1
+LIFX_GETINFRARED	LITERAL1
+LIFX_SETINFRARED	LITERAL1
+LIFX_UDP_PORT	LITERAL1
+LIFX_HEADER_LENGTH	LITERAL1
+LIFX_MAX_PACKET_LENGTH	LITERAL1
