@@ -19,8 +19,8 @@ setSource	KEYWORD2
 setTarget	KEYWORD2
 setDestination	KEYWORD2
 getState	KEYWORD2
-setColor  KEYWORD2
-setWaveform KEYWORD2
+setColor	KEYWORD2
+setWaveform	KEYWORD2
 getPower	KEYWORD2
 setPower	KEYWORD2
 getInfrared	KEYWORD2
@@ -32,7 +32,7 @@ flushPacket	KEYWORD2
 # Constants (LITERAL1)
 #######################################
 
-LIFX_PROTOCOL_NUMBER 	LITERAL1
+LIFX_PROTOCOL_NUMBER	LITERAL1
 LIFX_GETSTATE	LITERAL1
 LIFX_SETCOLOR	LITERAL1
 LIFX_SETWAVEFORM	LITERAL1
