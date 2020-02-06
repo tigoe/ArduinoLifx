@@ -29,11 +29,13 @@ void setup() {
   Serial.begin(9600);
   while (!Serial);
   Serial.println("Starting");
+  
+  WiFi.begin(ssid, pass);         // try to connect
   // while you're not connected to a WiFi AP,
   while ( WiFi.status() != WL_CONNECTED) {
     Serial.print("Attempting to connect to Network named: ");
     Serial.println(ssid);           // print the network name (SSID)
-    WiFi.begin(ssid, pass);         // try to connect
+    
     delay(2000);                    // wait 2 seconds before next attempt
   }
   char targetMac[] = "d0:73:d5:aa:bb:cc";    // broadcast MAC
