@@ -1,4 +1,4 @@
-= ArduinoLifx  Library for Arduino =
+#  ArduinoLifx  Library for Arduino
 
 This is a work in progress.
 
@@ -8,58 +8,58 @@ The Library uses the Arduino WiFiUDP library, but it can work with either MKR100
 
 For more detail on the LIFX protocol, see the https://lan.developer.lifx.com/docs/introduction[LIFX developer documents]
 
-= Commands =
+#  Commands
 
-== ArduinoLifx
+##  ArduinoLifx
 
-.Syntax
-----
+### Syntax
+````
 WiFiUDP Udp;                // instance of UDP library
 ArduinoLifx lifx(Udp);      // instance of the library
-----
+````
 
-.Parameters
+### Parameters
 takes a UDP object for transport
 
-.Returns
+### Returns
 void
 
-.Notes
+### Notes
 Initializes the LIFX packet.
 
 
-== begin
+##  begin
 
-.Syntax
-----
+### Syntax
+````
 char targetMac[] = "d0:73:d5:02:c5:3e";   // MAC address of the target
 char target[] = "192.168.0.12";           // IP address of the target
 IPAddress myIp = WiFi.localIP();          // your address
 lifx.begin(myIp, target, targetMac);      // begin
 
-----
+````
 
-.Parameters
+### Parameters
 targetMac[] - a hexadecimal character string containing the MAC address of the target device (i.e. the light you want to control). The string can be separated by colons or not, as you choose. LIFX bulbs have their MAC address printed on the side as their serial number.
 
 target[] - a  decimal character string containing the IP address of the target device. This must include periods between bytes as delimiters.
 
 myIP - an IPAddress containing the IP address of your board.
 
-.Returns
+### Returns
 void
 
-.Notes
+### Notes
 Initializes the headers of the LIFX packet.
 
-== setFlags
+##  setFlags
 
-.Syntax
-----
+### Syntax
+````
 lifx.setFlags(tagged, ackRequired, resRequired);
-----
+````
 
-.Parameters
+### Parameters
 tagged - a  boolean determining whether this message is tagged for a specific target device, or is a broadcast packet for all the targets on the local network. If tagged is 1, then you must include the MAC address and IP address of the target. If tagged is 0, then you can set the target MAC address to all zeroes, and the target IP address to xx.xx.xx.255, and all the target devices on your network will respond to the commands you send.
 
 ackRequired - a boolean determining whether an acknowledgement from the target is required.
@@ -67,95 +67,95 @@ ackRequired - a boolean determining whether an acknowledgement from the target i
 
 resRequired - a boolean determining whether a response message from the target is required.
 
-.Returns
+### Returns
 void
 
-.Notes
+### Notes
 For more on this command and its settings, see the  https://lan.developer.lifx.com/docs/header-description[LIFX LAN Protocol Header Description page]
 
-== setSequenceNumber
+##  setSequenceNumber
 
-.Syntax
-----
+### Syntax
+````
 lifx.setSequenceNumber(sequenceNumber);
-----
+````
 
-.Parameters
+### Parameters
 sequenceNumber - a byte containing the sequence number of this message. If the ackRequired flag is set, then the target device will return the sequence number in its acknowledgement, allowing you to distinguish which messages that your target is responding to.
 
-.Returns
+### Returns
 void
 
-.Notes
+### Notes
 For more on this command and its settings, see the  https://lan.developer.lifx.com/docs/header-description[LIFX LAN Protocol Header Description page]
 
-== setSource
+##  setSource
 
-.Syntax
-----
+### Syntax
+````
 lifx.setSource(myAddress);
-----
+````
 
-.Parameters
+### Parameters
 myAddress - an IPAddress that's your source IP address.
 
-.Returns
+### Returns
 void
 
-.Notes
+### Notes
 
-== setTarget
-.Syntax
-----
+##  setTarget
+### Syntax
+````
 lifx.setTarget(targetMac[]);
-----
+````
 
-.Parameters
+### Parameters
 
 targetMac[] - a hexadecimal character string containing the MAC address of the target device (i.e. the light you want to control). The string can be separated by colons or not, as you choose. LIFX bulbs have their MAC address printed on the side as their serial number.
 
-.Returns
+### Returns
 void
 
-.Notes
+### Notes
 
-== setDestination
-.Syntax
-----
+##  setDestination
+### Syntax
+````
 lifx.setDestination(target[]);
-----
+````
 
-.Parameters
+### Parameters
 target[] - a  decimal character string containing the IP address of the target device. This must include periods between bytes as delimiters.
 
 
-.Returns
+### Returns
 void
 
-.Notes
+### Notes
 
-== getState
-.Syntax
-----
+##  getState
+### Syntax
+````
 lifx.getState();
-----
+````
 
-.Parameters
+### Parameters
 none
 
-.Returns
+### Returns
 void
 
-.Notes
+### Notes
 Asks the target device to return its state. For more on this command and its settings, see the  https://lan.developer.lifx.com/docs/light-messages[LIFX LAN Protocol Light Messages Description page]
 
-== setColor
-.Syntax
-----
+##  setColor
+### Syntax
+````
 lifx.setColor(hue, saturation, brightness, colorTemperature, duration);
-----
+````
 
-.Parameters
+### Parameters
 hue - an unsigned int from 0 -360, using standard HSB values (0 = red, 120=green, 240=blue).
 
 saturation - an unsigned int from 0-65535
@@ -166,19 +166,19 @@ colorTemperature - an unsigned int from 0-65535 representing the color temperatu
 
 duration - an unsigned int representing the number of milliseconds for the change
 
-.Returns
+### Returns
 void
 
-.Notes
+### Notes
 Sets the color and brightness of the light. For more on this command and its settings, see the  https://lan.developer.lifx.com/docs/light-messages[LIFX LAN Protocol Light Messages Description page]
 
-== setWaveform
-.Syntax
-----
+##  setWaveform
+### Syntax
+````
 lifx.setWaveform(transient, hue, saturation, brightness, color, period, cycles, skew, waveform, setHue, setSaturation, setBrightness, setColorTemperature);
-----
+````
 
-.Parameters
+### Parameters
 transient - an int, value 0 or 1, representing whether or not the color persists.
 
 hue - an unsigned int from 0 -360, using standard HSB values (0 = red, 120=green, 240=blue), representing the final hue.
@@ -207,103 +207,103 @@ setBrightness -  a byte as 0 or 1 representing whether the brightness should be 
 
 setColorTemperature -  a byte as 0 or 1 representing whether the color temperature should be set from the light's existing value.
 
-.Returns
+### Returns
 void
 
-.Notes
+### Notes
 Sets a waveform and parameters to be used for an effect. Depending on whether you set the last four parameters, this sends either the SET_WAVEFORM command or SET_WAVEFORM_OPTIONAL command. For more on this command and its settings, see the  https://lan.developer.lifx.com/docs/light-messages[LIFX LAN Protocol Light Messages Description page] and the https://lan.developer.lifx.com/v2.0/docs/waveforms[Waveform page].
 
-== getPower
-.Syntax
-----
+##  getPower
+### Syntax
+````
 lifx.getPower();
-----
+````
 
-.Parameters
+### Parameters
 none
 
-.Returns
+### Returns
 void
 
-.Notes
+### Notes
 Sets the power of a LIFX light. Doesn't return a value, but the target light will send back a UDP packet with the return message. For more on this command and its settings, see the  https://lan.developer.lifx.com/docs/light-messages[LIFX LAN Protocol Light Messages Description page]
 
-== setPower
-.Syntax
-----
+##  setPower
+### Syntax
+````
 lifx.setPower(level, duration);
-----
+````
 
-.Parameters
+### Parameters
 level - an unsigned int representing the power level. 0 will turn the light off, any other level will turn it on.
 
 duration - an unsigned int representing the number of milliseconds for the change
-.Returns
+### Returns
 void
 
-.Notes
+### Notes
 Sets the power of a LIFX light.  For more on this command and its settings, see the  https://lan.developer.lifx.com/docs/light-messages[LIFX LAN Protocol Light Messages Description page]
 
-== getInfrared
-.Syntax
-----
+##  getInfrared
+### Syntax
+````
 lifx.getInfrared();
-----
+````
 
-.Parameters
+### Parameters
 none
 
-.Returns
+### Returns
 void
 
-.Notes
+### Notes
 Gets the infrared brightness of a LIFX light, when that property is available.  Doesn't return a value, but the target light will send back a UDP packet with the return message.  For more on this command and its settings, see the  https://lan.developer.lifx.com/docs/light-messages[LIFX LAN Protocol Light Messages Description page]
 
-== setInfrared
-.Syntax
-----
+##  setInfrared
+### Syntax
+````
 lifx.setInfrared(irBrightness);
-----
+````
 
-.Parameters
+### Parameters
 irBrightness - an unsigned int representing the infrared brightness, when that property is available.
 
-.Returns
+### Returns
 void
 
-.Notes
+### Notes
 Sets the infrared brightness of a LIFX light, when that property is available. For more on this command and its settings, see the  https://lan.developer.lifx.com/docs/light-messages[LIFX LAN Protocol Light Messages Description page]
 
-== sendPacket
-.Syntax
-----
+##  sendPacket
+### Syntax
+````
 lifx.sendPacket(msgType, target[], port);
-----
+````
 
-.Parameters
+### Parameters
 messageType - an integer representing the message type. See the  https://lan.developer.lifx.com/docs/light-messages[LIFX LAN Protocol Light Messages Description page] for a list of the message type values.
 
 target[] - a  decimal character string containing the IP address of the target device. This must include periods between bytes as delimiters.
 
 port - an integer representing the target port. Defaults to 56700
 
-.Returns
+### Returns
 void
 
-.Notes
+### Notes
 Sends a LIFX packet to the target. This is normally sent by each of the Light messages automatically. It's public so that it can be used for diagnostic purposes only.
 
-== flushPacket
-.Syntax
-----
+##  flushPacket
+### Syntax
+````
 lifx.flushPacket();
-----
+````
 
-.Parameters
+### Parameters
 none
 
-.Returns
+### Returns
 void
 
-.Notes
+### Notes
 Clears the current LIFX packet values. Public for diagnostic purposes only.
